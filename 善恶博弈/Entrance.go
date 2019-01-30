@@ -10,11 +10,9 @@ func main(){
 	start()
 }
 
-
-
 func start(){
 	// 初始化
-	names := [...]string{"Player1","Player2","Player1"}
+	names := [...]string{"Player1","Player2","Player3","Player9"}
 	const ListSize = len(names)
 	var list [ListSize] strategy.IStrategy
 	factory := new(playerFactory.PlayerFactory)
@@ -30,12 +28,15 @@ func start(){
 
 	// 开始竞技
 	fmt.Println("PK顺序如下：")
-	for i:=0; i < ListSize - 1; i++ {
-		for j:=i+1; j < ListSize ; j++ {
-			// fmt.Println(list[i].GetName(),"PK",list[j].GetName())
-			PK(list[i],list[j],i,j)
+	for t:=0; t<100; t++ {
+		for i:=0; i < ListSize - 1; i++ {
+			for j:=i+1; j < ListSize ; j++ {
+				// fmt.Println(list[i].GetName(),"PK",list[j].GetName())
+				PK(list[i],list[j],i,j)
+			}
 		}
 	}
+		
 
 	// 最终分数
 	fmt.Println("最终每个策略分数：")
@@ -46,8 +47,8 @@ func start(){
 func PK(p1, p2 strategy.IStrategy,id1,id2 int){
 	
 	// 两个策略先分别根据对方编号进行决策，决策结果分别存储在res当中
-	res1 := p1.Game(id1)
-	res2 := p2.Game(id2)
+	res1 := p1.Game(id2)
+	res2 := p2.Game(id1)
 
 	// 再分别通知每个决策对方的结果
 	p1.Process(res2,id2)
@@ -72,7 +73,7 @@ func PK(p1, p2 strategy.IStrategy,id1,id2 int){
 		p1.AddScore(-1)
 	}
 
-	fmt.Println("PK:",id1,p1.GetName(),res1,id2,res2,p2.GetName(),)
+	fmt.Println("PK:\t",p1.GetName(),res1,"\n\t",p2.GetName(),res2)
 	
 }
 

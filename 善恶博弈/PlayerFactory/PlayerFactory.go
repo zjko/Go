@@ -19,6 +19,10 @@ func (pf * PlayerFactory) Create(name string) strategy.IStrategy {
 		product = new(player.Player1)
 	case "Player2": 
 		product = new(player.Player2)
+	case "Player3": 
+		product = new(player.Player3)
+	case "Player9": 
+		product = new(player.Player9)
 	default: 
 		fmt.Println("undefine:",name)
 		return nil	
