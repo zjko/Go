@@ -12,7 +12,7 @@ func main(){
 
 func start(){
 	// 初始化
-	names := [...]string{"Player1","Player2","Player3","Player7","Player9"}
+	names := [...]string{"Player1","Player2","Player3","Player4","Player7","Player9"}
 	const ListSize = len(names)
 	var list [ListSize] strategy.IStrategy
 	factory := new(playerFactory.PlayerFactory)

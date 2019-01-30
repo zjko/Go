@@ -1,7 +1,7 @@
 package player
 
-// Player4 策略1
-// 无论是谁都将无条件的合作
+// Player4 禁闭策略
+// 类似封杀策略，但是在连续背叛对方3次之后，则会将对方从黑名单中消除。
 type Player4 struct{
 	BasicPlayer
 	blacklist map[int]int
@@ -16,18 +16,23 @@ func (p * Player4) Init () bool {
 
 // Game 实现博弈接口
 func (p * Player4) Game (id int) bool {
-	_ , ok := p.blacklist[id]
+	v , ok := p.blacklist[id]
     if !ok {
         return true
 	}
-	// fmt.Println(p.history,id,p.history[id])
+	if v > 3 {
+		p.blacklist[id] = 0
+		return true
+	} else if v == 0 {
+		return true
+	}
 	return false
 }
 
 // Process 博弈完成之后要做的处理
 func (p * Player4) Process (res bool, id int) bool {
-	// if !res {
-	// 	p.blacklist[id] = (int)res
-	// }
+	if !res {
+		p.blacklist[id]++
+	}
 	return true
 }

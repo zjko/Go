@@ -7,28 +7,28 @@ type BasicPlayer struct{
 }
 
 // Init 类初始化
-func (p * BasicPlayer) Init () bool {
+func (p * BasicPlayer)Init() bool {
 	p.name = "未定义名称"
 	return true
 }
 
 // Game 实现博弈接口
-func (p * BasicPlayer) Game (id int) bool {
+func (p * BasicPlayer)Game(id int) bool {
 	return true
 }
 
 // Process 博弈完成之后要做的处理
-func (p * BasicPlayer) Process (res bool,id int) bool {
+func (p * BasicPlayer)Process(res bool,id int) bool {
 	return true
 }
 
 // GetName 返回名称
-func (p * BasicPlayer) GetName () string {
+func (p * BasicPlayer)GetName() string {
 	return p.name
 }
 
 // GetScore 返回分数
-func (p * BasicPlayer) GetScore () int {
+func (p * BasicPlayer)GetScore() int {
 	return p.score
 }
 
