@@ -15,24 +15,40 @@ func (p * Player5) Init () bool {
 }
 
 // Game 实现博弈接口
-func (p * Player5) Game (id int) bool {
-	v , ok := p.blacklist[id]
+func (p * Player5)Game(id int) bool {
+	_ , ok := p.blacklist[id]
     if !ok {
+		// 不在黑名单中
         return true
 	}
-	if v > 3 {
-		p.blacklist[id] = 0
-		return true
-	} else if v == 0 {
-		return true
-	}
+	// fmt.Println(p.history,id,p.history[id])
 	return false
 }
 
 // Process 博弈完成之后要做的处理
-func (p * Player5) Process (res bool, id int) bool {
-	if !res {
-		p.blacklist[id]++
+func (p * Player5)Process(res bool, id int) bool {
+	v , ok := p.blacklist[id]
+	if ok {
+		// 在黑名单中
+		if res {
+			v++
+			if v > 2 {
+				delete(p.blacklist, id)
+				return true
+			}
+			p.blacklist[id]++
+			// 被我背叛
+		} else {
+			p.blacklist[id] = 0
+		}
+	} else {
+		// 不在黑名单中
+		if !res {
+			// 加入黑名单
+			p.blacklist[id] = 0
+		}
 	}
+	
+
 	return true
 }

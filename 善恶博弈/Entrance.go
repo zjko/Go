@@ -12,7 +12,7 @@ func main(){
 
 func start(){
 	// 初始化
-	names := [...]string{"Player1","Player2","Player3","Player4","Player7","Player9"}
+	names := [...]string{"Player1","Player2","Player3","Player4","Player5","Player6","Player7","Player8","Player9","Player10","Player11"}
 	const ListSize = len(names)
 	var list [ListSize] strategy.IStrategy
 	factory := new(playerFactory.PlayerFactory)
@@ -72,8 +72,10 @@ func PK(p1, p2 strategy.IStrategy,id1,id2 int){
 		p2.AddScore(-1)
 		p1.AddScore(-1)
 	}
-
-	fmt.Println("PK:\t",p1.GetName(),res1,"\n\t",p2.GetName(),res2)
+	if id1 == 10 || id2 == 10 {
+		fmt.Println("PK:\t",p1.GetName(),res1,"\n\t",p2.GetName(),res2)
+	}
+	
 	
 }
 
