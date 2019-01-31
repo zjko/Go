@@ -79,6 +79,6 @@ func PK(p1, p2 strategy.IStrategy,id1,id2 int){
 
 func show(p []strategy.IStrategy){
 	for i:=0;i<len(p);i++ {
-		fmt.Println(p[i].GetName(), p[i].GetScore())
+		fmt.Println("ID:",i,p[i].GetName(), p[i].GetScore())
 	}
 }
